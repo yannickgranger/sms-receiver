@@ -6,7 +6,6 @@
 parameters:
     mailer_from: '%env(MAILER_FROM)%'
     mailer_to: '%env(MAILER_TO)%'
-    twilio_auth_token: '%env(TWILIO_AUTH_TOKEN)%'
 
 services:
     # default configuration for services in *this* file

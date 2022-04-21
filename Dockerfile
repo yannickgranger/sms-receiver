@@ -54,4 +54,4 @@ COPY --chown=unit:unit ./.docker/unit/config.json /docker-entrypoint.d/
 
 RUN chown -R unit:unit /srv/app
 
-EXPOSE 8080 80
+EXPOSE 8080
