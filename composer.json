@@ -17,6 +17,7 @@
         "symfony/mailjet-mailer": "6.0.*",
         "symfony/runtime": "6.0.*",
         "symfony/sendinblue-mailer": "6.0.*",
+        "symfony/web-link": "6.0.*",
         "symfony/yaml": "6.0.*",
         "twilio/sdk": "^6.36"
     },

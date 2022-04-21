@@ -47,6 +47,9 @@
     "psr/event-dispatcher": {
         "version": "1.0.0"
     },
+    "psr/link": {
+        "version": "2.0.1"
+    },
     "psr/log": {
         "version": "3.0.0"
     },
@@ -231,6 +234,9 @@
     },
     "symfony/var-exporter": {
         "version": "v6.0.7"
+    },
+    "symfony/web-link": {
+        "version": "v6.0.3"
     },
     "symfony/yaml": {
         "version": "v6.0.3"
