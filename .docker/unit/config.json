@@ -1,0 +1,46 @@
+{
+  "listeners": {
+    "127.0.0.1:8080": {
+      "pass": "routes"
+    },
+    "127.0.0.1:80": {
+      "pass": "routes"
+    }
+  },
+  "routes":[
+    {
+      "match": {
+        "uri": "/",
+        "method": "GET"
+      },
+      "action": {
+        "pass": "applications/sms-receiver/direct"
+      }
+    },
+    {
+      "match": {
+        "host": "gompali.xyz",
+        "scheme" : "http",
+        "uri": "/api/*",
+        "method": "POST"
+      },
+      "action": {
+        "pass": "applications/sms-receiver/index"
+      }
+    }
+  ],
+  "applications": {
+    "sms-receiver": {
+      "type": "php",
+      "targets": {
+        "direct": {
+          "root": "/srv/app/public/"
+        },
+        "index": {
+          "root": "/srv/app/public/",
+          "script": "index.php"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,1 @@
+{"version":1,"defects":{"App\\Tests\\Unit\\TestEmail::testItSendsEmail":4},"times":{"App\\Tests\\Unit\\TestEmail::testItSendsEmail":0.474}}
