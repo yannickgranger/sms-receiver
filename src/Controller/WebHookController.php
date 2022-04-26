@@ -41,8 +41,10 @@ class WebHookController
      */
     public function __invoke(Request $request): JsonResponse
     {
+        $requestContent = $this->validateRequest($request);
+
         try {
-            $requestContent = json_decode($request->getContent(), true);
+
             $phone = array_key_exists('number',$requestContent) ? $requestContent['to'] : '';
             $email = new Email();
             $email->from($this->mailerFrom);
@@ -58,5 +60,26 @@ class WebHookController
         }
 
         return new JsonResponse(null, Response::HTTP_OK);
+    }
+
+    private function validateRequest(Request $request): ?array
+    {
+        try{
+            $requestContent = json_decode($request->getContent(), true, JSON_THROW_ON_ERROR);
+        } catch (\Exception $exception){
+            $this->logger->error('Invalid json payload '.$exception->getMessage());
+            return null;
+        }
+
+        $valid = array_key_exists('from', $requestContent);
+        $valid = $valid && array_key_exists('to', $requestContent);
+        $valid = $valid && array_key_exists('text', $requestContent);
+
+        if(!$valid){
+            $this->logger->error('Missing key in json payload');
+            return null;
+        }
+
+        return  $requestContent;
     }
 }
