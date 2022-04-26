@@ -33,16 +33,22 @@ class WebHookController
         $this->mailerTo = $mailerTo;
     }
 
+    /**
+     *     ['from' => {{ Start.message.from }}]
+     *     ['to' => {{ Start.message.to }}]
+     *     ['text' => {{ Start.message.msg }}]
+     *
+     */
     public function __invoke(Request $request): JsonResponse
     {
         try {
             $requestContent = json_decode($request->getContent(), true);
-            $phone = array_key_exists('number',$requestContent) ? $requestContent['number'] : '';
+            $phone = array_key_exists('number',$requestContent) ? $requestContent['to'] : '';
             $email = new Email();
             $email->from($this->mailerFrom);
             $email->to($this->mailerTo);
             $email->subject("received an sms on your number ".$phone);
-            $text = "You received an sms from ".$requestContent['from']." with message content : \n\n".$requestContent['text'];
+            $text = "[SMS] You received an sms from ".$requestContent['from']." with message content : \n\n".$requestContent['text'];
             $email->text($text);
             $this->mailer->send($email);
         } catch (\Exception $exception) {
