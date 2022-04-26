@@ -12,7 +12,7 @@ security:
         backend_users:
             memory:
                 users:
-                    plivo: { password: '$2y$10$8.e15yI3HmZzwcMevAjaj.LxnpITVukhV9Ux/kRrL/iA3deQo4aUy%', roles: ['ROLE_USER'] }
+                    plivo: { password: '$2a$12$sVULFhJVeLKbjH9CtaNyTOguiJIEi9C.6.TikAlzPGv17o/MyeND2', roles: ['ROLE_USER'] }
     firewalls:
         login:
             pattern: ^/api/login
