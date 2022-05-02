@@ -1,0 +1,86 @@
+frameworkVersion: ">=2.30.0 <3.0.0"
+service: app-collabs-sms-receiver
+
+configValidationMode: error
+variablesResolutionMode: 20210326
+
+plugins:
+    - ./vendor/runtime/bref-layer
+
+custom:
+    stage: ${opt:stage, "staging"}
+    region: ${self:custom.availableRegioms.${self:custom.stage}}
+    availableRegioms:
+        staging: eu-north-1
+        prod: eu-north-1
+    myDomainSettings:
+        prod:
+            domain: sms-receiver.collabs.app
+            certificate: '*.collabs.app'
+
+    customDomain:
+        domainName: ${self:custom.myDomainSettings.${self:custom.stage}.domain}
+        certificateName: ${self:custom.myDomainSettings.${self:custom.stage}.certificate}
+        basePath: ''
+        stage: ${self:custom.stage}
+        createRoute53Record: true
+        endpointType: 'regional'
+        apiType: http
+
+    cronEnabled:
+        prod: true
+        staging: false
+    myVpc:
+        prod:
+            securityGroupIds:
+                - sg-045d94db6a3aec18d # Only sms-receiver
+            subnetIds:
+                - subnet-0be4f532dbe70ab85
+                - subnet-09a69ca9114cd7328
+                - subnet-075f729a89433f117
+
+    myEnvironment:
+        prod:
+            APP_ENV: prod
+            APP_RUNTIME: Runtime\Bref\Runtime
+            BREF_LOOP_MAX: 100 # Optional
+            APP_SECRET: ${ssm:/app.collabs.sms-receiver/app-secret}
+
+
+provider:
+    name: aws
+    # The AWS region in which to deploy (us-east-1 is the default)
+    region: ${self:custom.region}
+    # The stage of the application, e.g. dev, production, staging… ('dev' is the default)
+    stage: ${self:custom.stage}
+    runtime: provided.al2
+    memorySize: 1792
+    httpApi:
+        payload: '2.0'
+    lambdaHashingVersion: 20201221
+    deploymentBucket:
+        name: s3-collabs-lambda-applications-${self:custom.region}
+        blockPublicAccess: true
+
+    vpc: ${self:custom.myVpc.${self:custom.stage}}
+    environment: ${self:custom.myEnvironment.${self:custom.stage}}
+
+functions:
+
+    website:
+        handler: public/index.php
+        timeout: 20
+        layers:
+            - ${runtime-bref:php-81}
+        events:
+            - httpApi: '*'
+
+package:
+    patterns:
+        # Excluded files and folders for deployment
+        - '!.docker/**'
+        - '!node_modules/**'
+        - '!tests/**'
+        - '!var/**'
+        # Do include these
+        - 'var/cache/prod/**'

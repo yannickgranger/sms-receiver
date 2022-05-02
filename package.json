@@ -1,0 +1,8 @@
+{
+    "devDependencies": {
+        "serverless": "^2.72.2",
+        "serverless-domain-manager": "^6.0.3"
+    },
+    "license": "UNLICENSED",
+    "private": true
+}

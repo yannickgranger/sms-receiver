@@ -18,3 +18,7 @@
 /phpunit.xml
 .phpunit.result.cache
 ###< phpunit/phpunit ###
+
+###> bref/symfony-bridge ###
+/.serverless/
+###< bref/symfony-bridge ###
