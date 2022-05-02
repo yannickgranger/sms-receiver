@@ -1,0 +1,52 @@
+name: Deploy Production
+on:
+  push:
+    tags: [ '*' ]
+
+jobs:
+  aws_prod:
+    name: Push to AWS
+    runs-on: ubuntu-20.04
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          coverage: none
+
+      - name: Setup Node
+        uses: actions/setup-node@v2
+        with:
+          node-version: 16
+
+      - name: Download dependencies
+        uses: ramsey/composer-install@v1
+        with:
+          composer-options: "--no-dev --no-scripts"
+
+      - name: Yarn install
+        shell: bash
+        run: yarn install --frozen-lockfile
+
+      - name: Warmup cache
+        run: |
+          rm -rf var/cache/*
+          bin/console cache:warmup --env=prod
+          echo "<?php return [];" > .env.local.php
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-region: eu-north-1
+          role-to-assume: ${{ secrets.AWS_ROLE_TO_ASSUME }}
+          role-session-name: GitHub-Deploy-User
+
+      - name: Serverless deploy
+        run: |
+          ./node_modules/.bin/serverless deploy --stage=prod --force

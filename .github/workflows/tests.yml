@@ -1,0 +1,34 @@
+on: [ pull_request ]
+name: Tests
+
+
+jobs:
+
+  unit:
+    name: PHPUnit
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.1
+          extensions: apcu, redis
+          coverage: none
+
+      - name: Download dependencies
+        uses: ramsey/composer-install@v1
+
+      - name: PHPUnit
+        run: ./vendor/bin/phpunit
+
+      - name: Upload log files
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: unit-logs
+          path: var/log
+          retention-days: 5

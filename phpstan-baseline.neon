@@ -1,0 +1,7 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^PHPDoc tag @param for parameter \\$entity with type T is not subtype of native type object\\.$#"
+			count: 1
+			path: src/Repository/AbstractRepository.php
+

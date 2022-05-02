@@ -35,21 +35,19 @@ class WebHookController
     /**
      *     ['from' => {{ Start.message.from }}]
      *     ['to' => {{ Start.message.to }}]
-     *     ['text' => {{ Start.message.msg }}]
-     *
+     *     ['text' => {{ Start.message.msg }}].
      */
     public function __invoke(Request $request): JsonResponse
     {
         $requestContent = $this->validateRequest($request);
 
         try {
-
-            $phone = array_key_exists('number',$requestContent) ? $requestContent['to'] : '';
+            $phone = array_key_exists('number', $requestContent) ? $requestContent['to'] : '';
             $email = new Email();
             $email->from($this->mailerFrom);
             $email->to($this->mailerTo);
-            $email->subject("received an sms on your number ".$phone);
-            $text = "[SMS] You received an sms from ".$requestContent['from']." with message content : \n\n".$requestContent['text'];
+            $email->subject('received an sms on your number '.$phone);
+            $text = '[SMS] You received an sms from '.$requestContent['from']." with message content : \n\n".$requestContent['text'];
             $email->text($text);
             $this->mailer->send($email);
         } catch (\Exception $exception) {
@@ -63,10 +61,11 @@ class WebHookController
 
     private function validateRequest(Request $request): ?array
     {
-        try{
+        try {
             $requestContent = json_decode($request->getContent(), true, JSON_THROW_ON_ERROR);
-        } catch (\Exception $exception){
+        } catch (\Exception $exception) {
             $this->logger->error('Invalid json payload '.$exception->getMessage());
+
             return null;
         }
 
@@ -74,11 +73,12 @@ class WebHookController
         $valid = $valid && array_key_exists('to', $requestContent);
         $valid = $valid && array_key_exists('text', $requestContent);
 
-        if(!$valid){
+        if (!$valid) {
             $this->logger->error('Missing key in json payload');
+
             return null;
         }
 
-        return  $requestContent;
+        return $requestContent;
     }
 }
