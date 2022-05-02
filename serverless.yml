@@ -6,6 +6,7 @@ variablesResolutionMode: 20210326
 
 plugins:
     - ./vendor/runtime/bref-layer
+    - serverless-domain-manager
 
 custom:
     stage: ${opt:stage, "staging"}
