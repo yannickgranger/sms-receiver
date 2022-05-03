@@ -46,7 +46,10 @@ custom:
             APP_RUNTIME: Runtime\Bref\Runtime
             BREF_LOOP_MAX: 100 # Optional
             APP_SECRET: ${ssm:/app.collabs.sms-receiver/app-secret}
-
+            MAILER_FROM: "no-reply@sms-receiver.xyz"
+            MAILER_TO: "yannick.gger@gmail.com"
+            MAILER_GMAIL_DSN: gmail://yannickgger.1976@gmail.com:K76a4qam5kQ4kUeJ@localhost?encryption=null&auth_mode=plain
+            JWT_PASSPHRASE: b9d72d05d0bd63e606c4411d4a2ca936
 
 provider:
     name: aws
