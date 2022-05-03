@@ -12,7 +12,7 @@ use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\Mime\Email;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route(path: '/api/sms', name: 'sms', methods: ['POST', 'GET'])]
+#[Route(path: '/api/sms', name: 'sms', methods: ['POST'])]
 class WebHookController
 {
     private MailerInterface $mailer;
