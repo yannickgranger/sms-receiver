@@ -20,9 +20,6 @@
             "serverless.yml"
         ]
     },
-    "clue/arguments": {
-        "version": "v2.1.0"
-    },
     "composer/pcre": {
         "version": "3.0.0"
     },
@@ -189,12 +186,6 @@
     },
     "riverline/multipart-parser": {
         "version": "2.0.9"
-    },
-    "runtime/bref": {
-        "version": "0.3.1"
-    },
-    "runtime/bref-layer": {
-        "version": "1.5.5"
     },
     "sebastian/cli-parser": {
         "version": "1.0.1"

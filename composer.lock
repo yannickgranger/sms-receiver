@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fc3d7e0fd94786c6177d3608129bb7a9",
+    "content-hash": "9dafa3313dcff3e23c679a6f46f5ca94",
     "packages": [
         {
             "name": "async-aws/core",
@@ -269,73 +269,6 @@
                 }
             ],
             "time": "2022-01-11T15:13:10+00:00"
-        },
-        {
-            "name": "clue/arguments",
-            "version": "v2.1.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/clue/arguments.git",
-                "reference": "87f2c4bc2ff602173bc52f5935a9c3b70d8c996d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/clue/arguments/zipball/87f2c4bc2ff602173bc52f5935a9c3b70d8c996d",
-                "reference": "87f2c4bc2ff602173bc52f5935a9c3b70d8c996d",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3"
-            },
-            "require-dev": {
-                "phpunit/phpunit": "^9.3 || ^5.7 || ^4.8.35"
-            },
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/functions.php"
-                ],
-                "psr-4": {
-                    "Clue\\Arguments\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Christian Lück",
-                    "email": "christian@clue.engineering"
-                }
-            ],
-            "description": "The simple way to split your command line string into an array of command arguments in PHP.",
-            "homepage": "https://github.com/clue/arguments",
-            "keywords": [
-                "args",
-                "arguments",
-                "argv",
-                "command",
-                "command line",
-                "explode",
-                "parse",
-                "split"
-            ],
-            "support": {
-                "issues": "https://github.com/clue/arguments/issues",
-                "source": "https://github.com/clue/arguments/tree/v2.1.0"
-            },
-            "funding": [
-                {
-                    "url": "https://clue.engineering/support",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/clue",
-                    "type": "github"
-                }
-            ],
-            "time": "2020-12-08T13:02:50+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -1682,121 +1615,6 @@
                 "source": "https://github.com/Riverline/multipart-parser/tree/2.0.9"
             },
             "time": "2021-10-18T09:56:35+00:00"
-        },
-        {
-            "name": "runtime/bref",
-            "version": "0.3.1",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-runtime/bref.git",
-                "reference": "07e3b8cd34502e9facc1d31e6f494de7e566a6f2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-runtime/bref/zipball/07e3b8cd34502e9facc1d31e6f494de7e566a6f2",
-                "reference": "07e3b8cd34502e9facc1d31e6f494de7e566a6f2",
-                "shasum": ""
-            },
-            "require": {
-                "clue/arguments": "^2.1",
-                "ext-json": "*",
-                "ext-sockets": "*",
-                "psr/http-server-handler": "^1.0",
-                "riverline/multipart-parser": "^2.0",
-                "runtime/bref-layer": "^1.3",
-                "symfony/runtime": "^5.3 || ^6.0"
-            },
-            "require-dev": {
-                "bref/bref": "^1.3",
-                "guzzlehttp/test-server": "^0.1",
-                "symfony/http-foundation": "^5.3 || ^6.0",
-                "symfony/http-kernel": "^5.4 || ^6.0",
-                "symfony/phpunit-bridge": "^5.3"
-            },
-            "bin": [
-                "bin/bref-local-handler.php"
-            ],
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "bref/autoload.php"
-                ],
-                "psr-4": {
-                    "Runtime\\Bref\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Tobias Nyholm",
-                    "email": "tobias.nyholm@gmail.com"
-                }
-            ],
-            "description": "Bref runtime",
-            "support": {
-                "source": "https://github.com/php-runtime/bref/tree/0.3.1"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/nyholm",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-02-12T19:43:28+00:00"
-        },
-        {
-            "name": "runtime/bref-layer",
-            "version": "1.5.5",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/php-runtime/bref-layer.git",
-                "reference": "a7385ced58083b38a25dee041fda700185b86503"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/php-runtime/bref-layer/zipball/a7385ced58083b38a25dee041fda700185b86503",
-                "reference": "a7385ced58083b38a25dee041fda700185b86503",
-                "shasum": ""
-            },
-            "require-dev": {
-                "async-aws/core": "^1.7",
-                "async-aws/lambda": "^1.1",
-                "bref/logger": "^1.0",
-                "mnapoli/silly": "^1.7",
-                "mnapoli/silly-php-di": "^1.2",
-                "symfony/finder": "^5.2",
-                "symfony/http-client": "5.3.8",
-                "symfony/process": "^5.2"
-            },
-            "type": "library",
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nyholm",
-                    "email": "tobias.nyholm@gmail.com"
-                }
-            ],
-            "support": {
-                "issues": "https://github.com/php-runtime/bref-layer/issues",
-                "source": "https://github.com/php-runtime/bref-layer/tree/1.5.5"
-            },
-            "funding": [
-                {
-                    "url": "https://github.com/Nyholm",
-                    "type": "github"
-                },
-                {
-                    "url": "https://github.com/mnapoli",
-                    "type": "github"
-                }
-            ],
-            "time": "2022-03-23T14:35:25+00:00"
         },
         {
             "name": "sensio/framework-extra-bundle",
@@ -8236,5 +8054,5 @@
         "ext-json": "*"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }
