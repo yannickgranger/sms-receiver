@@ -49,6 +49,8 @@ custom:
             MAILER_FROM: "no-reply@sms-receiver.xyz"
             MAILER_TO: "yannick.gger@gmail.com"
             MAILER_GMAIL_DSN: gmail://yannickgger.1976@gmail.com:K76a4qam5kQ4kUeJ@localhost?encryption=null&auth_mode=plain
+            JWT_SECRET_KEY: "%kernel.project_dir%/config/jwt/private.pem"
+            JWT_PUBLIC_KEY: "%kernel.project_dir%/config/jwt/public.pem"
             JWT_PASSPHRASE: b9d72d05d0bd63e606c4411d4a2ca936
 
 provider:
